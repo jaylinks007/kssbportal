@@ -1,0 +1,114 @@
+/***** style.css *****/
+/* Base */
+:root{
+  --primary: #0d6efd; /* Bootstrap primary blue */
+  --bg-dark-overlay: rgba(6,12,34,0.55); /* Darker overlay option */
+  /*--bg-dark-overlay: rgba(6,12,34,0.25); /* Transparent overlay */
+  --max-width: 1200px;
+  --font-sans: 'Open Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+*{box-sizing:border-box}
+body{font-family:var(--font-sans);color:#222;background:#fff}
+a{transition:all .18s ease}
+
+/* Logo */
+.logo-upload{
+  position:relative;
+  width:40px;
+  height:40px;
+  border-radius:6px;
+  overflow:hidden;
+  cursor:pointer;
+  border:1px solid rgba(13,110,253,.08);
+  background:linear-gradient(135deg,#e9eefb,#d7e4ff);
+}
+.logo-upload input[type=file]{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  cursor:pointer;
+}
+.logo-upload img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+/* HERO */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/images/students.png'); /* go up 1 level from css/ */
+  background-size: cover;
+  background-position: center;
+  filter: brightness(.95);
+  transform: translateZ(0);
+  transition: transform .2s linear;
+}
+/* Desktop parallax uses transform changed in JS. For mobile fallback, background scrolls normally */
+@media(min-width:992px){
+.hero-bg{background-attachment:fixed}
+}
+.hero-overlay{position:absolute;inset:0;background:var(--bg-dark-overlay)}
+.hero-content{position:relative;z-index:2;padding:5rem 1rem}
+
+/* Hero fades */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s ease,var(--transform, transform) .6s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* Allow custom delay via CSS variable --delay */
+.hero-title{animation:fadeUp .7s ease forwards;animation-delay:var(--delay,0s);opacity:0}
+.hero-sub{animation:fadeUp .7s ease forwards;animation-delay:var(--delay,0.25s);opacity:0}
+.hero-cta{animation:fadeUp .7s ease forwards;animation-delay:var(--delay,0.5s);opacity:0}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Scholarships card hover */
+.scholarship-card{transition:transform .25s ease, box-shadow .25s ease}
+.scholarship-card:hover{transform:scale(1.03);box-shadow:0 18px 40px rgba(13,110,253,0.12)}
+.card-img-top{height:160px;object-fit:cover}
+
+/* Testimonials */
+.carousel-item img{object-fit:cover}
+.fade-in-when-visible{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
+.fade-in-when-visible.visible{opacity:1;transform:none}
+
+/* CTA */
+section.bg-primary{background:var(--primary)}
+
+/* Footer */
+footer{background:#fff}
+footer a{color:#333}
+
+/* Back to top */
+.back-to-top{position:fixed;right:20px;bottom:20px;width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(13,110,253,0.15);opacity:0;transform:translateY(6px);transition:opacity .25s ease, transform .25s ease;z-index:999}
+.back-to-top.show{opacity:1;transform:none}
+.back-to-top:focus{outline:none}
+
+/* Responsive adjustments */
+@media(max-width:767.98px){
+  .hero-content{padding:3.5rem 1rem}
+  .hero-title{font-size:1.6rem}
+}
+
+/* Utility spacing for lists */
+.benefits li{margin-top:.5rem}
+
+/* Accessibility helpers */
+.btn:focus{box-shadow:0 0 0 .18rem rgba(13,110,253,.18)}
+
+/* Small polish */
+.navbar .btn-primary{padding:8px 16px}
+
+/* End of style.css */
